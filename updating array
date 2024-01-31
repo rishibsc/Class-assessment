@@ -1,0 +1,51 @@
+#include <iostream>
+
+void insertElement(int arr[], int& size, int position, int element) {
+    if (position < 0 || position > size) {
+        std::cout << "Invalid Input. Position is out of bounds.\n";
+        return;
+    }
+
+    for (int i = size; i > position; --i) {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[position] = element;
+
+    ++size;
+}
+
+int main() {
+    const int maxSize = 100;
+    int arr[maxSize];
+    int size = 0;
+
+    std::cout << "Enter the size of the array: ";
+    std::cin >> size;
+
+    if (size > maxSize) {
+        std::cout << "Array size exceeds the maximum limit.\n";
+        return 1;
+    }
+
+    std::cout << "Enter the elements of the array:\n";
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+    }
+
+    int position, element;
+    std::cout << "Enter the position to insert the element: ";
+    std::cin >> position;
+
+    std::cout << "Enter the element to insert: ";
+    std::cin >> element;
+
+    insertElement(arr, size, position, element);
+
+    std::cout << "Updated array:\n";
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+
+    return 0;
+}
